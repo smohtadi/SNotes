@@ -1,24 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import requireAuth from './components/Route.component';
+import Navbar from './components/Navbar.component';
+import LandingContainer from './components/Landing/LandingContainer.component';
+import RegisterContainer from './components/Register/RegisterContainer.component';
+import DashboardContainer from './components/Dashboard/DashboardContainer.component';
+import EditTransactionContainer from './components/EditTransaction/EditTransactionContainer.component';
+import ReportContainer from './components/Report/ReportContainer.component';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Navbar />
+        <div className="container">
+          <Route exact path="/" component={LandingContainer} />
+          <Route exact path="/register" component={RegisterContainer} />
+          <Route exact path="/profile/" component={requireAuth(DashboardContainer)} />
+          <Route exact path="/transaction/edit/:id" component={requireAuth(EditTransactionContainer)}/>
+          <Route exact path="/report" component={requireAuth(ReportContainer)} />
+        </div>
+      </Router>
     </div>
   );
 }
