@@ -39,7 +39,9 @@ transactionRouter.get('/getOne/:id', async (req, res) => {
 
 transactionRouter.get('/:uid', async (req, res) => {
   try {
-    const transactions = await transactionModel.find({ uid: req.params.uid });
+    const transactions = await transactionModel
+    .find({ uid: req.params.uid })
+    .sort({ date: -1 });
     res.status(200).json(transactions);
   } catch (error) {
     res.status(404).send(error);

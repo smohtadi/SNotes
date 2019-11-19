@@ -42,14 +42,13 @@ class EditTransactionContainer extends React.Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    if (isNaN(e.target.amount.value) || e.target.amount.value === '') {
-      console.log('Amount not a number');
+    if (isNaN(this.state.amount)) {
       return;
     }
     editTransaction({
-      description: e.target.description.value,
-      type: e.target.type.value,
-      amount: e.target.amount.value,
+      description: this.state.description,
+      type: this.state.type,
+      amount: this.state.amount,
       tid: this.props.match.params.id
     })
       .then(res => {
@@ -62,13 +61,13 @@ class EditTransactionContainer extends React.Component {
   render() {
     return (
       <EditransactionPresentational
-        onSubmit={this.onSubmit}
-        description={this.state.description}
-        type={this.state.type}
-        onChangeType={this.onChangeType}
-        amount={this.state.amount}
-        onChangeDescription={this.onChangeDescription}
-        onChangeAmount={this.onChangeAmount}
+      amount={this.state.amount}
+      description={this.state.description}
+      type={this.state.type}  
+      onChangeAmount={this.onChangeAmount}
+      onChangeDescription={this.onChangeDescription}
+      onChangeType={this.onChangeType}
+      onSubmit={this.onSubmit}
       />
     );
   }

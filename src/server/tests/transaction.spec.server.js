@@ -90,7 +90,6 @@ describe('Transaction', () => {
     .post('/api/transaction/create/')
     .send(transaction)
     .end((err, res) => {
-      console.log(res.body);
       tid = res.body.tid;
       chai.expect(res.status).to.equal(201);
       done();
