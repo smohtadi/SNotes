@@ -28,7 +28,6 @@ class LandingContainer extends React.Component {
       password: t.password.value
     })
       .then(res => {
-        console.log(res);
         this.props.cookies.set('uid', res.uid, {
           path: '/',
           maxAge: 60 * 60 * 2

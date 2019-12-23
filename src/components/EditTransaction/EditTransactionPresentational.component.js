@@ -1,13 +1,13 @@
 import React from 'react';
 
 const EditTransactionPresentational = ({
-  onSubmit,
+  amount,
   description,
   type,
-  onChangeType,
-  amount,
+  onChangeAmount,
   onChangeDescription,
-  onChangeAmount
+  onChangeType,
+  onSubmit,
 }) => {
   return (
     <div>
@@ -16,7 +16,6 @@ const EditTransactionPresentational = ({
         <div className='form-group'>
           <label>Description:</label>
           <input
-            name='description'
             className='form-control'
             type='text'
             onChange={onChangeDescription}
@@ -27,7 +26,6 @@ const EditTransactionPresentational = ({
         <div className='form-group'>
           <label>Type</label>
           <select
-            name='type'
             className='form-control'
             onChange={onChangeType}
             value={type}>
@@ -38,7 +36,6 @@ const EditTransactionPresentational = ({
         <div className='form-group'>
           <label>Amount</label>
           <input
-            name='amount'
             className='form-control'
             type='text'
             onChange={onChangeAmount}
