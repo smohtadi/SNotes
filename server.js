@@ -28,6 +28,9 @@ app.use(
     }
   })
 );
+// Database connection
+mongoose.connect(keys.MONGO_URI, { useNewUrlParser: true });
+
 app.use('/api/user', userRoutes);
 app.use('/api/transaction', transactionRoutes);
 app.get('*', (req, res) => {
@@ -38,14 +41,6 @@ app.get('*', (req, res) => {
 // });
 app.listen(PORT, function() {
   console.log('Connected to server');
-});
-// Database connection
-mongoose.connect(keys.MONGO_URI, { useNewUrlParser: true });
-mongoose.connection.on('connected', function(){
-  console.log(connected("Database connection successfull"));
-});
-mongoose.connection.on('error', function(err){
-  console.log(err);
 });
 // app.httpserver = httpServer;
 module.exports = app;
