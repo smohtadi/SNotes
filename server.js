@@ -11,6 +11,12 @@ const PORT = process.env.PORT || 5000;
 
 // Database connection
 mongoose.connect(keys.MONGO_URI, { useNewUrlParser: true });
+mongoose.connection.on('connected', function(){
+  console.log(connected("Database connection successfull"));
+});
+mongoose.connection.on('error', function(err){
+  console.log(err);
+});
 // Start Express
 const app = express();
 // Middlewares
@@ -35,8 +41,11 @@ app.use('/api/transaction', transactionRoutes);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-const httpServer = app.listen(PORT, function() {
+// const httpServer = app.listen(PORT, function() {
+//   console.log('Connected to server');
+// });
+app.listen(PORT, function() {
   console.log('Connected to server');
 });
-app.httpserver = httpServer;
+// app.httpserver = httpServer;
 module.exports = app;
