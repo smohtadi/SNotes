@@ -1,13 +1,11 @@
 import React from 'react';
-import BarChart from '../BarChart.component';
 
 const ReportPresentational = ({
   incomeSum,
   spendingSum,
   incomeProjected,
   spendingProjected,
-  suggestedSaving,
-  spendings
+  suggestedSaving
 }) => {
   const style = {
     padding: '3% 0 3% 0',
@@ -69,12 +67,6 @@ const ReportPresentational = ({
         <div className='row'>
           <div className='col-12'>
             <h4>$ {suggestedSaving}</h4>
-          </div>
-        </div>
-        <div className='row'>
-          <div className='col-12'>
-            <h3>Spendings</h3>
-            <BarChart data={spendings} />
           </div>
         </div>
       </div>

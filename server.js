@@ -15,7 +15,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'build')));
-// app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(
   session({
     name: keys.SESS_NAME,
@@ -36,11 +36,7 @@ app.use('/api/transaction', transactionRoutes);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-// const httpServer = app.listen(PORT, function() {
-//   console.log('Connected to server');
-// });
 app.listen(PORT, function() {
   console.log('Connected to server');
 });
-// app.httpserver = httpServer;
 module.exports = app;

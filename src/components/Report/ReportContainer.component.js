@@ -14,7 +14,6 @@ class ReportContainer extends React.Component {
       incomeProjected: 0,
       spendingProjected: 0,
       suggestedSaving: 0,
-      spendings: []
     };
   }
 
@@ -24,7 +23,8 @@ class ReportContainer extends React.Component {
       const threshold = this.props.cookies.get('threshold');
       const creditData = await getReport(uid, 'Credit');
       const debitData = await getReport(uid, 'Debit');
-      const balance = await getBalance(uid);
+      let balance = await getBalance(uid);
+      balance = balance.balance;
       const stats = new Stats(creditData, debitData);
       this.setState({
         incomeSum: stats.getTotal('Credit'),
@@ -32,7 +32,6 @@ class ReportContainer extends React.Component {
         incomeProjected: stats.getProjection('Credit'),
         spendingProjected: stats.getProjection('Debit'),
         suggestedSaving: stats.getSuggestedSaving(threshold, balance),
-        spendings: stats.mDebitArr
       });
     } catch (error) {
       console.log(error);
@@ -47,7 +46,6 @@ class ReportContainer extends React.Component {
         incomeProjected={this.state.incomeProjected}
         spendingProjected={this.state.spendingProjected}
         suggestedSaving={this.state.suggestedSaving}
-        spendings={this.state.spendings}
       />
     );
   }

@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import requireAuth from './components/Route.component';
+import Authorized from './components/Authorized.component';
 import Navbar from './components/Navbar.component';
 import LandingContainer from './components/Landing/LandingContainer.component';
 import RegisterContainer from './components/Register/RegisterContainer.component';
@@ -17,7 +18,7 @@ function App() {
       <Router>
         <Navbar />
         <div className="container">
-          <Route exact path="/" component={LandingContainer} />
+          <Route exact path="/" component={Authorized(LandingContainer)} />
           <Route exact path="/register" component={RegisterContainer} />
           <Route exact path="/profile/" component={requireAuth(DashboardContainer)} />
           <Route exact path="/transaction/edit/:id" component={requireAuth(EditTransactionContainer)}/>

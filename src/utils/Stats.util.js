@@ -57,11 +57,9 @@ export default class Stats {
 
   getSuggestedSaving(threshold, balance) {
     let projectedIncome = this.getProjection("Credit");
+    let projectedDebit = this.getProjection("Debit");
     projectedIncome = (projectedIncome === 0) ? 1 : projectedIncome;
-    let x = (projectedIncome -
-      this.getProjection("Debit") +
-      balance - threshold) /
-      projectedIncome;
+    let x = (projectedIncome - projectedDebit + balance - threshold) / projectedIncome;
     if (x >= 0.20) {
       x = 0.20;
     } else if (x <= 0) {
